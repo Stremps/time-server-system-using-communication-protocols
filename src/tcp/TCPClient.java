@@ -7,7 +7,7 @@ import java.net.*;
 public class TCPClient {
     public static void main(String[] args) {
         try {
-            String serverAddress = "179.106.194.183"; // Replace with the server's actual IP address
+            String serverAddress = "172.16.62.160"; // Replace with the server's actual IP address
             int serverPort = 8082;
             
             // Creates TCP client socket and connects to the server
@@ -18,12 +18,12 @@ public class TCPClient {
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             
             // Mensagem a ser enviada ao servidor
-            String sentence = "Teste de conexão 123";
+            String sentence = "[Client computer time]";
             outToServer.writeBytes(sentence + '\n');
             
             // Read the server response
-            String modifiedSentence = inFromServer.readLine();
-            System.out.println("FROM SERVER: " + modifiedSentence);
+            String serverSentence = inFromServer.readLine();
+            System.out.println("Server time: " + serverSentence);
             
             // Close the client socket
             clientSocket.close();
