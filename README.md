@@ -21,9 +21,9 @@ Pré-requisito: Java JDK versão 22 ou superior
 
 1. Clone o repositório ou baixe os arquivos do projeto.
 2. Compile os arquivos Java:
-> javac TCPServer.java LogToFile.java Connection.java
+&nbsp; > javac TCPServer.java LogToFile.java Connection.java
 3. Execute o servidor:
-> java TCPServer
+&nbsp; > java TCPServer
 4. Compile o cliente:
 > javac TCPClient.java Connection.java
 5. Execute o cliente:
