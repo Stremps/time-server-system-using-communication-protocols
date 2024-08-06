@@ -19,14 +19,14 @@ O projeto é composto pelos seguintes módulos Java:
 
 Pré-requisito: Java JDK versão 22 ou superior
 
-1. Clone o repositório ou baixe os arquivos do projeto.
-2. Compile os arquivos Java:
-&nbsp; > javac TCPServer.java LogToFile.java Connection.java
-3. Execute o servidor:
-&nbsp; > java TCPServer
-4. Compile o cliente:
+ Clonar o repositório ou baixe os arquivos do projeto.
+ Compilar os arquivos Java:
+> javac TCPServer.java LogToFile.java Connection.java
+ Executar o servidor:
+> java TCPServer
+ Compilar o cliente:
 > javac TCPClient.java Connection.java
-5. Execute o cliente:
+ Executar o cliente:
 > java TCPClient
 
 
