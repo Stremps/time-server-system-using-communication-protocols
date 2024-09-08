@@ -1,4 +1,4 @@
-package tcp;
+package TCP;
 
 import java.io.IOException;
 import java.net.Inet4Address;
