@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
+import Log.LogToFile;
 
 class Connection extends Thread {
     private DataInputStream in;

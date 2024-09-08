@@ -1,4 +1,4 @@
-package TCP;
+package Log;
 
 import java.io.FileWriter;
 import java.io.IOException;
