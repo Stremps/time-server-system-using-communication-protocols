@@ -4,6 +4,10 @@ import java.rmi.Naming;
 import java.util.Random;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalTime;
+import java.net.Inet4Address;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
 public class TimeClient {
     public static void main(String[] args) {
@@ -15,8 +19,8 @@ public class TimeClient {
             int randomSecond = random.nextInt(60); // Segundo aleatório entre 0 e 59
             int randomMillisecond = random.nextInt(1000); // Milissegundo aleatório entre 0 e 999
 
-            // Captura o IP do cliente
-            String clientIP = InetAddress.getLocalHost().getHostAddress();
+            // Gets the IP address of the "wlo" network interface or Windows equivalent
+            String localIP = getLocalIPAddress(new String[]{"wlo", "Wi-Fi", "WLAN"});
 
             // Formata o horário aleatório para exibição
             String currentTime = String.format("%02d:%02d:%02d.%03d", randomHour, randomMinute, randomSecond, randomMillisecond);
@@ -29,7 +33,7 @@ public class TimeClient {
             // Solicitando uma nova instância do serviço de tempo
             TimeService timeService = factory.createNewTimeService();
             // Invoca o método remoto e obtém o tempo atualizado do servidor
-            String synchronizedTime = timeService.getCurrentTime(clientIP, currentTime);
+            String synchronizedTime = timeService.getCurrentTime(localIP, currentTime);
 
             long end_time = System.currentTimeMillis();
 
@@ -45,5 +49,31 @@ public class TimeClient {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static String getLocalIPAddress(String[] interfaceNames) {
+        try {
+            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
+            
+            while (networkInterfaces.hasMoreElements()) {
+                NetworkInterface networkInterface = networkInterfaces.nextElement();
+                
+                // Checks if the interface is one of those specified
+                for (String interfaceName : interfaceNames) {
+                    if (networkInterface.getName().startsWith(interfaceName)) {
+                        Enumeration<InetAddress> inetAddresses = networkInterface.getInetAddresses();
+                        while (inetAddresses.hasMoreElements()) {
+                            InetAddress inetAddress = inetAddresses.nextElement();
+                            if (inetAddress instanceof Inet4Address) {
+                                return inetAddress.getHostAddress();
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (SocketException e) {
+            System.out.println("Error getting network interfaces: " + e.getMessage());
+        }
+        return null;
     }
 }
