@@ -1,5 +1,5 @@
 
-# Trabalho 2 Sistemas Distribuídos: Servidor de Tempo implementado com RMI (Remote Method Invocation)
+# Trabalho 1 Sistemas Distribuídos: Servidor de Tempo implementado com protocolo TCP.
 Este projeto implementa um sistema de servidor de tempo, onde os clientes podem solicitar o horário atual do servidor e ajustar seus relógios com base nos tempos de ida e volta das mensagens de solicitação e resposta. Além disso, o servidor mantém um registro das ações de cada usuário em logs.
 
 ## Funcionalidades
@@ -44,7 +44,7 @@ Pré-requisito: Java JDK versão 22 ou superior
 
 
 
-# Trabalho 2 Sistemas Distribuídos: Adequação da implementasção anterior com o uso de RMI (Remote Method Invocation)
+# Trabalho 2 Sistemas Distribuídos: Readequação da implementasção anterior com o uso de RMI (Remote Method Invocation)
 
 ## Componentes
 
