@@ -4,5 +4,5 @@ import java.rmi.RemoteException;
 
 public interface TimeService extends Remote {
     // Método para obter o horário do servidor
-    String getCurrentTime() throws RemoteException;
+    String getCurrentTime(String clientIP, String clientTime) throws RemoteException;
 }
