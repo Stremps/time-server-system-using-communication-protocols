@@ -2,6 +2,9 @@ package RMI;
 import java.net.InetAddress;
 import java.rmi.Naming;
 import java.util.Random;
+
+import Log.localIp;
+
 import java.time.format.DateTimeFormatter;
 import java.time.LocalTime;
 import java.net.Inet4Address;
@@ -20,7 +23,7 @@ public class TimeClient {
             int randomMillisecond = random.nextInt(1000); // Milissegundo aleatório entre 0 e 999
 
             // Gets the IP address of the "wlo" network interface or Windows equivalent
-            String localIP = getLocalIPAddress(new String[]{"wlo", "Wi-Fi", "WLAN"});
+            String localIP = new localIp().getLocalIPAddress(new String[]{"wlo", "Wi-Fi", "WLAN"});
 
             // Formata o horário aleatório para exibição
             String currentTime = String.format("%02d:%02d:%02d.%03d", randomHour, randomMinute, randomSecond, randomMillisecond);
@@ -49,31 +52,5 @@ public class TimeClient {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private static String getLocalIPAddress(String[] interfaceNames) {
-        try {
-            Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
-            
-            while (networkInterfaces.hasMoreElements()) {
-                NetworkInterface networkInterface = networkInterfaces.nextElement();
-                
-                // Checks if the interface is one of those specified
-                for (String interfaceName : interfaceNames) {
-                    if (networkInterface.getName().startsWith(interfaceName)) {
-                        Enumeration<InetAddress> inetAddresses = networkInterface.getInetAddresses();
-                        while (inetAddresses.hasMoreElements()) {
-                            InetAddress inetAddress = inetAddresses.nextElement();
-                            if (inetAddress instanceof Inet4Address) {
-                                return inetAddress.getHostAddress();
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (SocketException e) {
-            System.out.println("Error getting network interfaces: " + e.getMessage());
-        }
-        return null;
     }
 }
